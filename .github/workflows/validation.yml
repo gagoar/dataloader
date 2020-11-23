@@ -3,7 +3,7 @@ name: Validation
 on: push 
 
 jobs:
- flow:
+  validation:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -16,30 +16,8 @@ jobs:
         run: yarn install
       - name: Flow
         run: yarn check
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: Use Node.js 12.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-      - uses: bahmutov/npm-install@v1.4.5
-      - name: Install dependencies
-        run: yarn install
       - name: Lint
         run: yarn lint 
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: Use Node.js 12.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-      - uses: bahmutov/npm-install@v1.4.5
-      - name: Install dependencies
-        run: yarn install
       - name: Tests
         run: yarn testonly --coverage
       - name: Upload coverage to Codecov
